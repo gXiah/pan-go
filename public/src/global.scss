@@ -1,0 +1,19 @@
+/* Global style sheet */
+
+/* =========== Fonts =========== */
+
+/* Roboto Slab - Main content */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+$roboto: 'Roboto Slab';
+
+$main-content-font: $roboto;
+/* =========== Colors =========== */
+$light-blue: #706fd3;
+$dark-blue: #40407a;
+
+$red: #d63031;
+$asphalt: #2d3436;
+$orange: #fdcb6e;
+
+$light-grey: #dfe6e9;
+$dark-grey: grey;
