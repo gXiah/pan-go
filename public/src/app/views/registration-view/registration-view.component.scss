@@ -1,0 +1,37 @@
+@import "../../../global.scss";
+
+#contact-search-container{
+	width: 30% !important;
+	min-width: 300px;
+}
+
+.form-container{
+	color: #fff !important;
+	// text-align: center;
+}
+
+	#registration-form{
+		width: 100% !important;
+	}
+
+		.form-group{
+			width: 100% !important;
+		}
+
+			.form-group small{
+				color:  #fff !important;
+				text-align: right;
+				font-style: italic;
+			}
+
+		#registration-form button[type="submit"]{
+
+			display: block;
+			margin: auto;
+
+		}
+
+		#newRandomProfile{
+			display: block;
+			margin: auto;
+		}

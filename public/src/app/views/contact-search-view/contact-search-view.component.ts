@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from 'src/app/profile.service';
 
 @Component({
   selector: 'app-contact-search-view',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactSearchViewComponent implements OnInit {
 
-  constructor() { }
+    profiles: any;
 
-  ngOnInit(): void {
-  }
+  	constructor(private profileService: ProfileService){}
+
+  	ngOnInit(): void {
+  		this.getAllProfiles();
+  	}
+
+  	getAllProfiles(){
+  		this.profileService.getAllProfiles().subscribe(
+  			(response: any) => { this.profiles = response; }
+  		);
+  	}
+
+    getSearchProfiles(query: string){
+      this.profileService.getSearchProfiles(query).subscribe(
+        (response: any) => { this.profiles = response; }
+      );
+    }
 
 }

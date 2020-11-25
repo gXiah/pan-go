@@ -1,0 +1,89 @@
+<div class="container focused-container" id="contact-search-container">
+	
+	<div class="row title-container">
+		<h1 class="col-10">Sign up</h1>
+	</div>
+
+
+	<!-- <button id="newProfile" class="btn btn-warning" (click)="newProfile()">
+		Create A Random Profile
+	</button>
+	<br><br> -->
+
+
+	<!-- Results list container -->
+	<div class="row form-container">
+
+		
+		<form action="#" method="" id="registration-form">
+			
+			<div class="form-group">
+				<label>Your name <span class="required"></span> </label>
+				<input #name type="text" class="form-control"	placeholder="Your name">
+				<small  class="form-text text-muted">Required</small>
+			</div>
+
+			<div class="form-group">
+				<label>Your current age</label>
+				<input #age type="number" class="form-control" >
+				<small  class="form-text text-muted">(Not birth dates for this version)</small>
+			</div>
+
+			<div class="form-group">
+				<label>Your family</label>
+				<input #family type="text" class="form-control"placeholder="Generic pangolin family">
+			</div>
+
+			<div class="form-group">
+				<label>Your race</label>
+				<input #race type="text" class="form-control" placeholder="Race #1">
+			</div>
+
+			<div class="form-group">
+				<label>The food category you like</label>
+				<input #food type="text" class="form-control" placeholder="Classic pangolin food">
+			</div>
+
+			<div class="form-group">
+				<button 
+					type="submit" class="btn btn-success" 
+					(click)="newProfile(name.value, age.value, family.value, race.value, food.value)"
+				>
+					Create your profile !
+				</button>
+				<small class="form-text text-muted" style="text-align: center;">
+					Already have an account ? 
+					<a href="/signup">Log in !</a>
+				</small>
+			</div>
+
+			
+
+			<hr>
+
+			<div style="text-align: center;">
+				Or you can
+			</div>
+
+			<br>
+
+			<div class="form-group" style="text-align: center;">
+				<button id="newRandomProfile" class="btn btn-warning" (click)="newRandomProfile()">
+					Create A Random Profile
+				</button>
+
+				<br>
+
+				<a href="/" >
+					Return to home page
+				</a>
+			</div>
+
+		</form>
+		
+
+	</div>
+
+
+
+</div>

@@ -1,7 +1,7 @@
 // Resources
 const express = require('express');
 
-const {db} 			= require('./database/mongoDb');
+const { db }		= require('./database/mongoDb');
 const { Profile } 	= require('./database/models/profile.model');
 const { Link } 		= require('./database/models/link.model');
 
@@ -9,9 +9,19 @@ const { Link } 		= require('./database/models/link.model');
 const app = express();
 
 
-// Middlewares
+/* === Middlewares === */
+
+// Midleware : Body parser
 const bodyParser = require('body-parser');
 	app.use(bodyParser.json());
+
+// Midleware : CORS headers
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 
 
@@ -26,6 +36,7 @@ const bodyParser = require('body-parser');
 		(req, res) => {
 			Profile
 			.find({})
+			.sort([['_id','descending']])
 			.then((profiles) => {
 				res.send(profiles);
 			})
@@ -39,6 +50,7 @@ const bodyParser = require('body-parser');
 
 			Profile
 			.find({ "name" : {'$regex': req.params.searchQuery.toLowerCase()} })
+			.sort([['_id','descending']])
 			.then( (profiles) => {
 				res.send(profiles)
 			})

@@ -7,14 +7,14 @@
 	<!-- Search bar container -->
 	<div class="row search-bar-container">
 		
-		<div class="col-12">
+		<div class="col-12" style="padding: 0 !important;">
 			
-			<form action="#" method="">
-				<input 
-						type="text" name="contact_search_input" onsubmit="submit()"
-						placeholder=" Search for a Pangolin" />
-			</form>
-
+			
+				<input #searchQuery
+						type="text" name="contact_search_input"
+						placeholder=" Search for a Pangolin" 
+						(keydown)="getSearchProfiles(searchQuery.value)"
+				/>
 		</div>
 
 	</div>
@@ -22,63 +22,28 @@
 
 	<!-- Results list container -->
 	<div class="row results-container">
+
+		<div class="col-12 result-item" *ngFor="let profile of profiles">
+
+			<div class="row">
+				
+				<div class="col-4" style="text-align-last: left;padding-left: 60px;">
+					{{ profile.name }}
+				</div>
+				<div class="col-3"></div>
+				<div class="col-4" style="text-align: right;">
+					<button class="btn btn-sm btn-success add_contact_btn">
+						<i class="fas fa-plus"> Add contact</i>
+					</button>
+					<button class="btn btn-sm btn-danger add_contact_btn hidden">
+						<i class="fas fa-times">Remove contact</i>
+					</button>
+				</div>
+
+			</div>
+			
+		</div>
 		
-		<div class="col-12 result-item">
-
-			<div class="row">
-				
-				<div class="col-5">Pangol 1</div>
-				<div class="col-5"></div>
-				<div class="col-2">
-					<button class="btn btn-success add_contact_btn">
-						<i class="fas fa-plus"></i>
-					</button>
-					<button class="btn btn-danger add_contact_btn hidden">
-						<i class="fas fa-times"></i>
-					</button>
-				</div>
-
-			</div>
-
-		</div>
-
-		<div class="col-12 result-item">
-
-			<div class="row">
-				
-				<div class="col-5">Just Pan</div>
-				<div class="col-5"></div>
-				<div class="col-2">
-					<button class="btn btn-success add_contact_btn">
-						<i class="fas fa-plus"></i>
-					</button>
-					<button class="btn btn-danger add_contact_btn hidden">
-						<i class="fas fa-times"></i>
-					</button>
-				</div>
-
-			</div>
-			
-		</div>
-
-		<div class="col-12 result-item">
-
-			<div class="row">
-				
-				<div class="col-5">Pangal</div>
-				<div class="col-5"></div>
-				<div class="col-2">
-					<button class="btn btn-success add_contact_btn hidden">
-						<i class="fas fa-plus"></i>
-					</button>
-					<button class="btn btn-danger add_contact_btn  ">
-						<i class="fas fa-times"></i>
-					</button>
-				</div>
-
-			</div>
-			
-		</div>
 
 	</div>
 
