@@ -1,0 +1,60 @@
+<div class="container focused-container" id="contact-search-container">
+	
+	<div class="row title-container">
+		<h1 class="col-10">Log in</h1>
+	</div>
+
+
+	<!-- Results list container -->
+	<div class="row form-container">
+
+		
+		<form  id="registration-form">
+			
+			<div class="form-group">
+				<label>Your email adress <span class="required"></span> </label>
+				<input #email value="user#1@provider.com" type="email" class="form-control"	placeholder="example@provider.com">
+				<small  class="form-text text-muted">Required</small>
+			</div>
+
+			<div class="form-group">
+				<label>Password <span class="required"></span> </label>
+				<input #password value="password" type="password" class="form-control"	placeholder="Choose a password">
+				<small  class="form-text text-muted">Required</small>
+			</div>
+
+
+
+			<div class="form-group">
+				<button 
+					class="btn btn-success" id="login-btn"
+					(click)="login(email.value, password.value)"
+				>
+					Sign In
+				</button>
+				<small class="form-text text-muted" style="text-align: center;">
+					Don't have an account yet ? 
+					<a href="/register">Sign up !</a>
+				</small>
+			</div>
+
+			
+
+			<hr>
+
+			<br>
+
+			<div class="form-group" style="text-align: center;">
+			
+				<a href="/" >
+					Return to home page
+				</a>
+			</div>
+
+		</form>
+
+	</div>
+
+
+
+</div>

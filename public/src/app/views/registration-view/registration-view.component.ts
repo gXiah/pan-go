@@ -26,12 +26,13 @@ export class RegistrationViewComponent implements OnInit {
 	// Note : For this version (Showcase version), food is considered a simple 'string' and Note
 	// ... and array
 	newProfile(
+		email: string, password: string,
 		name: string, age: number,
 		family: string, race: string,
 		food : string
 	){
 		this.profileService
-			.createProfile(name, age, family, race, food)
+			.createProfile(email, password, name, age, family, race, food)
 			.subscribe( (response: any) => {
 			console.log(response);
 		});

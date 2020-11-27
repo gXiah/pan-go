@@ -2,11 +2,16 @@
 
 const db = require('mongoose');
 
-//Changing to global JS promise
+// Changing to global JS promise
 db.Promise = global.Promise;
 
 
-//Connecting to database
+// Deprecation Warnings
+db.set('useCreateIndex', true);
+db.set('useFindAndModify', false);
+db.set('useUnifiedTopology', true);
+
+// Connecting to database
 db.connect('mongodb+srv://root:qzrtyqzrty1198@cluster0.pkdab.mongodb.net/main?authSource=admin&replicaSet=atlas-hfb4at-shard-0&w=majority&readPreference=primary&appname=MongoDB Compass&retryWrites=true&ssl=true', { useNewUrlParser: true }).then(
 	() => {
 		console.log([
@@ -23,9 +28,6 @@ db.connect('mongodb+srv://root:qzrtyqzrty1198@cluster0.pkdab.mongodb.net/main?au
 		]);
 	}
 );
-
-db.set('useCreateIndex', true);
-db.set('useFindAndModify', false);
 
 module.exports = {
 	db

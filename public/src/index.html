@@ -13,5 +13,21 @@
 </head>
 <body>
   <app-root></app-root>
+
+  <script>
+
+    var input = document.getElementsByTagName("button");
+    var inputList = Array.prototype.slice.call(input);
+    inputList.forEach((button) => {
+    	button.addEventListener('click', function(event){
+			event.preventDefault();
+		});
+
+		console.log(button);
+    });
+
+
+  </script>
+
 </body>
 </html>
