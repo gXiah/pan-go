@@ -14,20 +14,5 @@
 <body>
   <app-root></app-root>
 
-  <script>
-
-    var input = document.getElementsByTagName("button");
-    var inputList = Array.prototype.slice.call(input);
-    inputList.forEach((button) => {
-    	button.addEventListener('click', function(event){
-			event.preventDefault();
-		});
-
-		console.log(button);
-    });
-
-
-  </script>
-
 <script src="runtime.js" defer></script><script src="polyfills.js" defer></script><script src="vendor.js" defer></script><script src="main.js" defer></script></body>
 </html>
