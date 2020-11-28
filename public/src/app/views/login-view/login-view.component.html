@@ -28,16 +28,19 @@
 
 
 			<div class="form-group">
-				<button 
-					class="btn btn-success" id="login-btn"
-					(click)="login(email.value, password.value)"
+
+				<a 
+					class="btn btn-success" (click)="login(email.value, password.value)"
+					style="display: block;margin: auto;color: #fff !important;width:30%;"
 				>
-					Sign In
-				</button>
+					Login
+				</a>
+				
 				<small class="form-text text-muted" style="text-align: center;">
 					Don't have an account yet ? 
 					<a href="/register">Sign up !</a>
 				</small>
+			
 			</div>
 
 			

@@ -220,27 +220,34 @@ let authCheck = function(req, res, next){
 	app.post(
 		['/login','/connexion'],
 		(req, res) => {
-			
+
 			Profile
 			.findByEmailAndPwd(req.body.email, req.body.password)
 			.then( (profile) => {
+
 				return profile.newSession().then((refreshToken) => {
 
 					return profile.genAuthToken().then( (token) => {
 						return {token, refreshToken}
 					});
+
 				}).then((tokens) => {
+
 					res
 					.header('x-refresh-token', tokens.refreshToken)
 					.header('x-access-token', tokens.token)
 					.send(profile);
 
 					console.log("Login successful", req.body.email);
+
 				})
 				.catch((err) => {
+
 					console.log("Error in '/login'", err);
 					res.sendStatus(400);
+					
 				});
+
 			})
 			.catch( (err) => { console.log("Login error.", err); } )
 
