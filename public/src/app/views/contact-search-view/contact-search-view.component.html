@@ -1,3 +1,4 @@
+
 <div class="container focused-container" id="contact-search-container">
 	
 	<div class="row title-container">
@@ -29,15 +30,18 @@
 				
 				<div class="col-4" style="text-align-last: left;padding-left: 60px;">
 					{{ profile.name }}
+					<span class="badge" *ngIf="currentId === profile._id"> You </span>
 				</div>
 				<div class="col-3"></div>
-				<div class="col-4" style="text-align: right;">
+				<div class="col-4" style="text-align: right;" *ngIf="currentId != profile._id">
+
 					<button class="btn btn-sm btn-success add_contact_btn">
 						<i class="fas fa-plus"> Add contact</i>
 					</button>
 					<button class="btn btn-sm btn-danger add_contact_btn hidden">
 						<i class="fas fa-times">Remove contact</i>
 					</button>
+
 				</div>
 
 			</div>

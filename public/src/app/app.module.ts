@@ -20,7 +20,7 @@ import { RequestInterceptorService } from './request-interceptor.service';
     RegistrationViewComponent,
     LoginViewComponent,
     ProfileViewComponent,
-    MyContactsViewComponent,
+    MyContactsViewComponent
   ],
   imports: [
     BrowserModule,

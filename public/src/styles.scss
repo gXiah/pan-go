@@ -23,9 +23,21 @@ body{
 	display: none;
 }
 
+.badge{
+	background-color: grey !important;
+	color:#fff;
+	border-radius: 5px;
+	letter-spacing: 0.1em;
+	font-weight: lighter;
+}
+
 a, a:visited{
 	color: $orange !important;
 }
+
+	nav a, nav a:visited{
+		color: #fff !important;
+	}
 
 .required:after{
 	font-size: 90%;

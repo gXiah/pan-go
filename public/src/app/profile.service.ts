@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { RequestHandlerService } from './request-handler.service';
 import { Router } from '@angular/router';
 
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpClient } from '@angular/common/http';
 import { shareReplay, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -12,7 +12,8 @@ export class ProfileService {
 
   	constructor(
   			private requestHandlerService : RequestHandlerService,
-  			private router: Router
+  			private router: Router,
+  			private http: HttpClient
   	){}
 
 
@@ -26,7 +27,7 @@ export class ProfileService {
 					.pipe(
 						shareReplay(),
 						tap( (res: HttpResponse<any>) => {
-							
+
 							this.saveSessionLocally(
 								res.body._id,
 								res.headers.get('x-access-token'),
@@ -43,9 +44,26 @@ export class ProfileService {
   			localStorage.setItem('x-refresh-token', refreshToken);
   		}
 
+  		getNewToken(){
+  			return this.http.get(
+  				'${this.requestHandlerService.ROOT}/token',
+  				{ 
+  					headers:{
+  						'x-refresh-token': this.getRefreshToken(),
+  						'_id': this.getProfileId()
+  					},
+  					observe: 'response'
+  				}
+  			).pipe(
+  				tap( (res: HttpResponse<any>) => {
+  					this.setToken(res.headers.get('x-access-token'));
+  				})
+  			);
+  		}
+
   	logout(){
   		this.destroySessionLocally();
-
+  		console.log("logging out");
   		this.router.navigateByUrl('/login');
   	}
 
@@ -60,6 +78,9 @@ export class ProfileService {
   	}
   	getRefreshToken(){
   		return localStorage.getItem('x-refresh-token');
+  	}
+  	getProfileId(){
+  		return localStorage.getItem('_id');
   	}
 
   	setToken(token: string){

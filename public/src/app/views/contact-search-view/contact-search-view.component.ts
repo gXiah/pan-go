@@ -9,12 +9,20 @@ import { ProfileService } from 'src/app/profile.service';
 export class ContactSearchViewComponent implements OnInit {
 
     profiles: any;
+    currentId: any;
 
   	constructor(private profileService: ProfileService){}
 
   	ngOnInit(): void {
   		this.getAllProfiles();
+      this.currentId = localStorage.getItem('_id');
+
   	}
+
+    
+    getAllContacts(sourceId: any){
+      
+    }
 
   	getAllProfiles(){
   		this.profileService.getAllProfiles().subscribe(
