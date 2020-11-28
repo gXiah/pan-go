@@ -37,6 +37,8 @@ export class RequestInterceptorService implements HttpInterceptor {
 								})
 							);
 
+						}else if(error.status === 401){
+							this.profileService.logout();
 						}
 
 						return throwError(error);

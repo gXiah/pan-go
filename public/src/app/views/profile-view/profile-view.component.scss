@@ -9,6 +9,12 @@
 	color: #fff !important;
 	// text-align: center;
 }
+
+	input:disabled{
+		cursor: default;
+		border:none;
+		color:darkgrey !important;
+	}
 	
 	.text-input{
 		border-color: #fff;

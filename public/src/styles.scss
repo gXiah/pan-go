@@ -23,6 +23,10 @@ body{
 	display: none;
 }
 
+.bg-dark{
+	background-color: $asphalt !important;
+}
+
 .badge{
 	background-color: grey !important;
 	color:#fff;
@@ -33,6 +37,7 @@ body{
 
 a, a:visited{
 	color: $orange !important;
+	cursor: pointer;
 }
 
 	nav a, nav a:visited{

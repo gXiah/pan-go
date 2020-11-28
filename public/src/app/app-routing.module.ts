@@ -25,9 +25,9 @@ const routes: Routes = [
 	{path: 'my-contacts', component: MyContactsViewComponent},
 		{path: 'mes-contacts', redirectTo: '/my-contacts', pathMatch: 'full'},
 
-	{path: 'my-profile', component: ProfileViewComponent},
-		{path: 'me', redirectTo: '/my-profile', pathMatch: 'full'},
-		{path: 'mon-profile', redirectTo: '/my-profile', pathMatch: 'full'}	
+	{path: 'my-profile/:id', component: ProfileViewComponent},
+		{path: 'me/:id', redirectTo: '/my-profile/:id', pathMatch: 'full'},
+		{path: 'mon-profile/:id', redirectTo: '/my-profile/:id', pathMatch: 'full'}	
 
 ];
 

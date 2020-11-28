@@ -27,12 +27,13 @@ export class ProfileService {
 					.pipe(
 						shareReplay(),
 						tap( (res: HttpResponse<any>) => {
-
+              console.log("Logged in");
 							this.saveSessionLocally(
 								res.body._id,
 								res.headers.get('x-access-token'),
 								res.headers.get('x-refresh-token')
 							);
+
 
 						})
 					)
@@ -133,5 +134,9 @@ export class ProfileService {
 		return this.requestHandlerService.get(`search/${query}`);
 
 	}
+
+  getProfileById(id: number){
+    return this.requestHandlerService.get(`search/id/${id}`);
+  }
 
 }

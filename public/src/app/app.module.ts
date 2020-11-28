@@ -13,6 +13,8 @@ import { MyContactsViewComponent } from './views/my-contacts-view/my-contacts-vi
 
 import { RequestInterceptorService } from './request-interceptor.service';
 
+import { NavbarModule } from './modules/navbar/navbar.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,8 @@ import { RequestInterceptorService } from './request-interceptor.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NavbarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true }

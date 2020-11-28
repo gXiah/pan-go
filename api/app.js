@@ -127,6 +127,27 @@ let authCheck = function(req, res, next){
 		}
 	);
 
+	// For this showcase version, there is no need to be authentified for this request
+	app.get(
+		['/search/id/:id','/recherche/id/:id'],
+		(req, res) => {
+
+			Profile
+			.find({"_id": req.params.id})
+			.then((profile) => {
+
+				if(!profile){
+					res.sendStatus(404);
+				}else{
+					res.send(profile);
+				}
+
+			})
+			.catch( (err) => {})
+
+		}
+	)
+
 	// GET : My contacts
 	app.get(
 		['/my-contacts/:id','/mes-contacts/:id'],

@@ -117,6 +117,12 @@ ProfileSchema.statics.findByIdAndToken = function(_id, token){
 	});
 }
 
+ProfileSchema.statics.findById = function(_id){
+	const profile = this;
+
+	return profile.findOne({_id});
+}
+
 // In this showcase version, we will not be hashing the passwords 
 ProfileSchema.statics.findByEmailAndPwd = function(email, password){
 	let profile = this;

@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 
 <div class="container focused-container" id="contact-search-container">
 	
@@ -29,7 +30,7 @@
 			<div class="row">
 				
 				<div class="col-4" style="text-align-last: left;padding-left: 60px;">
-					{{ profile.name }}
+					<a href="/my-profile/{{ profile._id }}">{{ profile.name }}</a>
 					<span class="badge" *ngIf="currentId === profile._id"> You </span>
 				</div>
 				<div class="col-3"></div>

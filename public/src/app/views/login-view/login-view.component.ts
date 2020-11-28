@@ -16,6 +16,8 @@ export class LoginViewComponent implements OnInit {
 
 	login(email: string, password: string){
 
+		console.log("logging in");
+
 		this.profileService
 			.login(email, password)
 			.subscribe((res: HttpResponse<any>) => {

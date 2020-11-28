@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 
 <div class="container focused-container" id="contact-search-container">
 	
@@ -6,54 +7,55 @@
 	</div>
 
 
-
 	<!-- Results list container -->
 	<div class="row form-container">
 
 		
-		<form action="#" method="" id="registration-form">
+		<form 
+			action="#" method="" id="registration-form" 
+			*ngFor="let p of profile">
 			
 			<div class="form-group">
-				<label>Your email adress <span class="required"></span> </label>
-				<input #email type="email" class="form-control text-input" value="theVla" 	placeholder="example@provider.com">
+				<label>Email adress <span class="required"></span> </label>
+				<input #email type="email" class="form-control text-input" value="{{ p.email }}" 	placeholder="example@provider.com" [disabled]="!sessionOk">
+				<small  class="form-text text-muted">Required</small>
+			</div>
+
+			<!-- <div class="form-group">
+				<label>Password</label>
+				<input class="form-control text-input" disabled placeholder="You cannot change your password">
+				<small  class="form-text text-muted">Not functioning </small>
+			</div> -->
+
+
+			<div class="form-group">
+				<label>Name <span class="required"></span> </label>
+				<input #name type="text" class="form-control text-input" value="{{ p.name }}" 	placeholder="Your name" [disabled]="!sessionOk">
 				<small  class="form-text text-muted">Required</small>
 			</div>
 
 			<div class="form-group">
-				<label>Password <span class="required"></span> </label>
-				<input #password type="password" class="form-control text-input" value="theVla" 	placeholder="Choose a password">
-				<small  class="form-text text-muted">Required</small>
-			</div>
-
-
-			<div class="form-group">
-				<label>Your name <span class="required"></span> </label>
-				<input #name type="text" class="form-control text-input" value="theVla" 	placeholder="Your name">
-				<small  class="form-text text-muted">Required</small>
-			</div>
-
-			<div class="form-group">
-				<label>Your current age</label>
-				<input #age type="number" class="form-control text-input" value="theVla"  >
+				<label>Current age</label>
+				<input #age type="number" class="form-control text-input" value="{{ p.age }}" [disabled]="!sessionOk" >
 				<small  class="form-text text-muted">(Not birth dates for this version)</small>
 			</div>
 
 			<div class="form-group">
-				<label>Your family</label>
-				<input #family type="text" class="form-control text-input" value="theVla" placeholder="Generic pangolin family">
+				<label>Family</label>
+				<input #family type="text" class="form-control text-input" value="{{ p.family }}" placeholder="Generic pangolin family" [disabled]="!sessionOk">
 			</div>
 
 			<div class="form-group">
-				<label>Your race</label>
-				<input #race type="text" class="form-control text-input" value="theVla"  placeholder="Race #1">
+				<label>Race</label>
+				<input #race type="text" class="form-control text-input" value="{{ p.race }}"  placeholder="Race #1" [disabled]="!sessionOk">
 			</div>
 
 			<div class="form-group">
-				<label>The food category you like</label>
-				<input #food type="text" class="form-control text-input" value="theVla"  placeholder="Classic pangolin food">
+				<label>Food category</label>
+				<input #food type="text" class="form-control text-input" value="{{ p.food }}"  placeholder="Classic pangolin food" [disabled]="!sessionOk">
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" *ngIf="sessionOk">
 				<button 
 					type="submit" class="btn btn-success" 
 					
