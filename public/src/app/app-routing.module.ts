@@ -30,6 +30,8 @@ const routes: Routes = [
 		{path: 'mon-profile/:id', redirectTo: '/profile/:id', pathMatch: 'full'},	
 		{path: 'my-profile/:id', redirectTo: '/profile/:id', pathMatch: 'full'}	
 
+	{path: '**', redirectTo: '/'}
+
 ];
 
 @NgModule({
