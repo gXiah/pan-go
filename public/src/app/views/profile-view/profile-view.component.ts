@@ -53,4 +53,24 @@ export class ProfileViewComponent implements OnInit {
   		// }
   	}
 
+    updateProfile(
+      email: string,
+      name: string, age: number,
+      family: string, race: string,
+      food : string
+    ){
+
+      if(this.sessionOk){
+
+        this.profileService
+          .updateProfile(this.currentSession._id, email, name, age, family, race, food)
+          .subscribe( (res: any) => {
+            console.log(res);
+          });
+
+      }
+
+      
+    }
+
 }

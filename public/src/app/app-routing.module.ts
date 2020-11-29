@@ -28,7 +28,7 @@ const routes: Routes = [
 	{path: 'profile/:id', component: ProfileViewComponent},
 		{path: 'me/:id', redirectTo: '/profile/:id', pathMatch: 'full'},
 		{path: 'mon-profile/:id', redirectTo: '/profile/:id', pathMatch: 'full'},	
-		{path: 'my-profile/:id', redirectTo: '/profile/:id', pathMatch: 'full'}	
+		{path: 'my-profile/:id', redirectTo: '/profile/:id', pathMatch: 'full'},
 
 	{path: '**', redirectTo: '/'}
 

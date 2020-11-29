@@ -11,8 +11,8 @@ export class RequestHandlerService {
   headers;
 
   	constructor(private http: HttpClient){
-      // this.ROOT = 'http://localhost:8080';
-  		this.ROOT = 'http://adaquesbi.me:8080';
+      // this.ROOT = 'http://localhost:8080'; // Dev
+  		this.ROOT = 'http://adaquesbi.me:8080'; // Prod
       
       this.headers = new HttpHeaders();
   	}

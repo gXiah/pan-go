@@ -14,13 +14,14 @@ const app = express();
 
 // Middleware : Body parser
 const bodyParser = require('body-parser');
-	app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 // Middleware : CORS headers
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, _id, x-access-token, x-refresh-token");
   res.header("Access-Control-Expose-Headers", "x-access-token, x-refresh-token");
+  res.header("Access-Control-Allow-Methods", "POST, GET, DELETE, PATCH");
   next();
 });
 
@@ -344,17 +345,25 @@ let authCheck = function(req, res, next){
 	*/
 	// PATCH : Modify own profile
 	app.patch(
-		['/profile/:id','/mon-profil/:id'],
+		['/update-profile','/modifier-mon-profil'],
 		checkJWTValidity,
 		(req, res) => {
 			
 			Profile
 			.findOneAndUpdate(
-				{ _id: db.Types.ObjectId(req.params.id) },
-				{$set: req.body}
+				{ _id: db.Types.ObjectId(req.body.id) },
+				{
+					email: req.body.email,
+					name: req.body.name,
+					age: req.body.age,
+					family: req.body.family,
+					race: req.body.race,
+					food: req.body.food
+				}
 			)
 			.then( (profile) => {
 				res.sendStatus(200);
+				console.log("Profile updated successfully");
 			})
 			.catch( (err) => { console.log("Error while updating the profile", err); } )
 

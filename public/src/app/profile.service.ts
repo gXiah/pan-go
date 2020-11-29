@@ -90,6 +90,27 @@ export class ProfileService {
   	}
 
 
+  updateProfile(
+    id: string,
+    email: string,
+    name: string, age: number,
+    family: string, race: string,
+    food : string
+  ){
+
+    return this.requestHandlerService.patch(
+      'update-profile',
+      {
+        'id':id, 
+        'email':email,
+        'name': name, 'age': age,
+        'family': family, 'race': race,
+        'food': food
+      }
+    );
+
+  }
+
 	createProfile(
 		email: string, password: string,
 		name: string, age: number,

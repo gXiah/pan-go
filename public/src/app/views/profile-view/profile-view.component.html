@@ -41,6 +41,11 @@
 			</div>
 
 			<div class="form-group">
+				<label>Password</label>
+				<a>You cannot change your password.</a>
+			</div>
+
+			<div class="form-group">
 				<label>Family</label>
 				<input #family type="text" class="form-control text-input" value="{{ p.family }}" placeholder="Generic pangolin family" [disabled]="!sessionOk">
 			</div>
@@ -56,12 +61,14 @@
 			</div>
 
 			<div class="form-group" *ngIf="sessionOk">
-				<button 
-					type="submit" class="btn btn-success" 
-					
+				
+				<a 
+					class="btn btn-success" 
+					(click)="updateProfile(email.value, name.value, age.value, family.value, race.value, food.value)"
+					style="display: block;margin: auto;color: #fff !important;width:40%;"
 				>
 					Update your profile info
-				</button>
+				</a>
 
 			</div>
 
