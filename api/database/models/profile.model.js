@@ -45,13 +45,20 @@ const ProfileSchema = new db.Schema({
 	age: Number,
 	family: String,
 	race: String,
-	food: [String]
+	food: [String] // For this version, only a string is stored
 
 });
 
 
 // Methods
 
+
+// Note : JWT = JSON Web Token
+
+/**
+* Return a JSON formatted array that represents a user
+* The password and sessions array are omitted for security reasons
+*/
 ProfileSchema.methods.toJSON = function(){
 	const profile = this;
 	const profileObject = profile.toObject();
@@ -59,6 +66,10 @@ ProfileSchema.methods.toJSON = function(){
 	return lodash.omit(profileObject, ['password', 'sessions']);
 }
 
+
+/**
+* Generates an authentication JWT
+*/
 ProfileSchema.methods.genAuthToken = function(){
 	const profile = this;
 
@@ -78,6 +89,10 @@ ProfileSchema.methods.genAuthToken = function(){
 	});
 }
 
+
+/**
+* Generates a 'Refresh' token for the JWT authentication
+*/
 ProfileSchema.methods.genRefreshToken = function(){
 	
 	return new Promise( (resolve, reject) => {
@@ -92,6 +107,10 @@ ProfileSchema.methods.genRefreshToken = function(){
 
 }
 
+
+/**
+* Stores a new loggin session (A token + Its expiry date)
+*/
 ProfileSchema.methods.newSession = function(){
 	let profile = this;
 
@@ -104,10 +123,20 @@ ProfileSchema.methods.newSession = function(){
 	})
 }
 
+
+/**
+* Getter
+*/
 ProfileSchema.statics.getJWTSecret = function(){
 	return jwt_hash_secret;
 }
 
+
+
+/**
+* Returns a profile
+* Looks for it using its ID and one of its sessions tokens
+*/
 ProfileSchema.statics.findByIdAndToken = function(_id, token){
 	const profile = this;
 
@@ -117,12 +146,22 @@ ProfileSchema.statics.findByIdAndToken = function(_id, token){
 	});
 }
 
+
+/**
+* Returns a profile
+* Looks for it by using its ID alone
+*/
 ProfileSchema.statics.findById = function(_id){
 	const profile = this;
 
 	return profile.findOne({_id});
 }
 
+
+/**
+* Returns a profile
+* Finds it by using its email and password
+*/
 // In this showcase version, we will not be hashing the passwords 
 ProfileSchema.statics.findByEmailAndPwd = function(email, password){
 	let profile = this;
@@ -142,6 +181,11 @@ ProfileSchema.statics.findByEmailAndPwd = function(email, password){
 	})
 }
 
+
+/**
+* Checks if a refresh token has expired
+*/
+// In this version, tokens are set never to expire, hence the "return false;"
 ProfileSchema.statics.isRefreshTokenExpired = (eat) => {
 	let currentTime = Date.now() / 1000;
 
@@ -154,6 +198,10 @@ ProfileSchema.statics.isRefreshTokenExpired = (eat) => {
 	return false;
 }
 
+
+/**
+* Creates and saves a loggin session (see newSession() for more details)
+*/
 let saveSession = (profile, refreshToken) => {
 	return new Promise( (resolve, reject) => {
 		let eat = (Date.now() / 1000) + (30 * 24 * 3600);// Expires AT

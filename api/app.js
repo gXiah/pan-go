@@ -1,3 +1,7 @@
+/**
+* Main APIs file (entry point)
+*/
+
 // Resources
 const express = require('express');
 
@@ -34,6 +38,7 @@ let log = function(req, res, next){
 };
 
 
+// Middleware : Checks if an auth token is still valid (authentic)
 let checkJWTValidity = (req, res, next) => {
 
 	let token = req.header('x-access-token');
@@ -51,6 +56,7 @@ let checkJWTValidity = (req, res, next) => {
 };
 
 // Middleware : Auth check
+// Checks if the logged in user can access the requested data
 let authCheck = function(req, res, next){
 
 	let refreshToken = req.header('x-refresh-token');
@@ -92,8 +98,10 @@ let authCheck = function(req, res, next){
 
 
 /* === Config === */
-
-	/* Config : Routes */
+	
+	// =================
+	// Config : Routes  
+	// =================
 
 	// GET : Search Page
 	app.get(
@@ -112,6 +120,8 @@ let authCheck = function(req, res, next){
 		}
 	);
 
+
+	// GET : search by query (Searchbar)
 	app.get(
 		['/search/:searchQuery','/recherche/:searchQuery'],
 		checkJWTValidity,
@@ -128,6 +138,7 @@ let authCheck = function(req, res, next){
 		}
 	);
 
+	// GET : search by id
 	// For this showcase version, there is no need to be authentified for this request
 	app.get(
 		['/search/id/:id','/recherche/id/:id'],
@@ -150,6 +161,7 @@ let authCheck = function(req, res, next){
 	)
 
 	// GET : My contacts
+	// Has not been enabled for this version (refer to the debrief report send by email)
 	app.get(
 		['/my-contacts/:id','/mes-contacts/:id'],
 		checkJWTValidity,
@@ -192,6 +204,9 @@ let authCheck = function(req, res, next){
 		});
 
 	// GET : Authenticate user
+	// Checks if user can access requested data (moddleware 'authCheck') ...
+	// ... and then return an access token that the user can put in his / her ...
+	// ... requests headers
 	app.get(
 		['/token', '/jeton'],
 		authCheck,
@@ -206,6 +221,9 @@ let authCheck = function(req, res, next){
 		}
 	);
 
+
+	// GET : /login
+	// Creates /login route (for tests purpose)
 	app.get(
 		['/login', '/connexion'],
 		(req, res) => {
@@ -218,6 +236,7 @@ let authCheck = function(req, res, next){
 	// v POST v
 
 	// POST : Login
+	// The login form sends a request to this route
 	app.post(
 		['/login','/connexion'],
 		(req, res) => {
@@ -250,7 +269,7 @@ let authCheck = function(req, res, next){
 				});
 
 			})
-			.catch( (err) => { console.log("Login error.", err); } )
+			.catch( (err) => { console.log("Fatal login error"); } )
 
 		});
 
@@ -340,9 +359,7 @@ let authCheck = function(req, res, next){
 	// ---------------
 	// v PATCH v
 
-	/**
-	* @todo : Auth check (Auth0 ? )
-	*/
+	
 	// PATCH : Modify own profile
 	app.patch(
 		['/update-profile','/modifier-mon-profil'],
@@ -399,11 +416,12 @@ let authCheck = function(req, res, next){
 
 
 
-	// 
-	app.listen(
-		8080,
-		() => {
-			console.log("=================================");
-			console.log("Server ON. Listening on port 8080");
-			console.log("=================================");
-		});
+// Firing up the server
+app.listen(
+	8080,
+	() => {
+		console.log("");
+		console.log("=================================");
+		console.log("Server ON. Listening on port 8080");
+		console.log("=================================");
+	});

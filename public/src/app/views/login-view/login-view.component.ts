@@ -14,6 +14,9 @@ export class LoginViewComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	/**
+    * Login in method
+    */
 	login(email: string, password: string){
 
 		console.log("logging in");

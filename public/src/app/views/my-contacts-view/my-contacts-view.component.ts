@@ -12,4 +12,8 @@ export class MyContactsViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+	/**
+	* NOT ENABLED
+	*/
+
 }

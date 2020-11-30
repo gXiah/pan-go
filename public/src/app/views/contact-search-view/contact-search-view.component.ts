@@ -8,8 +8,8 @@ import { ProfileService } from 'src/app/profile.service';
 })
 export class ContactSearchViewComponent implements OnInit {
 
-    profiles: any;
-    currentId: any;
+    profiles: any; // Fetched profiles
+    currentId: any; // Id of the requesting (authenticated) user
 
   	constructor(private profileService: ProfileService){}
 
@@ -20,16 +20,25 @@ export class ContactSearchViewComponent implements OnInit {
   	}
 
     
+    // Contacts feature has not been enabled in this showcase version
     getAllContacts(sourceId: any){
       
     }
 
+
+    /**
+    * Gets all profiles
+    */
   	getAllProfiles(){
   		this.profileService.getAllProfiles().subscribe(
   			(response: any) => { this.profiles = response; }
   		);
   	}
 
+
+    /**
+    * Gets profiles by (search) query
+    */
     getSearchProfiles(query: string){
       this.profileService.getSearchProfiles(query).subscribe(
         (response: any) => { this.profiles = response; }

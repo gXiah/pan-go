@@ -12,24 +12,24 @@ export class ProfileViewComponent implements OnInit {
 
 	profile: any
 
-	currentSession = {_id:null}
-	query_id = null;
-	sessionOk = false;
+	currentSession = {_id:null} // User requesting data
+	query_id = null; // Requested profile ID 
+	sessionOk = false; // If logged in user is actually requesting his/her own data or not
 
   	constructor(private profileService: ProfileService, private route: ActivatedRoute){
   		
   		this.currentSession["_id"] = localStorage.getItem('_id');
 
   		if(typeof this.currentSession._id !== 'undefined'){
-  			if(this.currentSession._id !== null){
+  			if(this.currentSession._id !== null){ // If session ID is set
 
-  				this.route.paramMap.subscribe( (params) => {
+  				this.route.paramMap.subscribe( (params) => { // Get id from params
   					this.query_id = params['params'].id;
   				});
 
-  				if(this.currentSession._id == this.query_id){
+  				if(this.currentSession._id == this.query_id){ // If the requesting user is requesting his/her own profile
   					this.sessionOk = true;
-  				}else{
+  				}else{ // else ...
   					this.sessionOk = false;
   				}
 
@@ -42,6 +42,12 @@ export class ProfileViewComponent implements OnInit {
 
   	ngOnInit(): void {}
 
+
+    /**
+    * This is the method that fetches a profile data
+    */
+    // Note : In this version, the extra security (refer to 'sessionOk' above) has been removed ...
+    // ... and the check is done directly from the form (Not secure, but enough for a showcase version)
   	getProfileData(){
   		// if(this.sessionOk){
   			this.profileService
@@ -53,6 +59,11 @@ export class ProfileViewComponent implements OnInit {
   		// }
   	}
 
+
+    /**
+    * Update profile method
+    */
+    // Note : in this version, a password cannot be updated (changed)
     updateProfile(
       email: string,
       name: string, age: number,

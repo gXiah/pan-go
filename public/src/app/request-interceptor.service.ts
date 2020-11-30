@@ -9,12 +9,24 @@ import { ProfileService } from './profile.service';
 @Injectable({
   providedIn: 'root'
 })
+
+/*******
+REQUESTS INTERCEPTORS
+*/
+
+// This class' main role is to intercept sent queries and, if the requesting user is ...
+// ... correctly identified, to append to the header the JWT tokens (and the user ID)
+
+
 export class RequestInterceptorService implements HttpInterceptor {
 
 	refreshedToken;
 
 	constructor(private profileService: ProfileService) { }
 
+
+
+	// Main interception method (refere to the HttpInterceptor Interface)
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any>{
 
 		request = this.appendAuthHeader(request);
@@ -25,8 +37,10 @@ export class RequestInterceptorService implements HttpInterceptor {
 					catchError( (error: HttpErrorResponse) => {
 						console.log(error);
 
+
+						// If 401 and user is not correctly authentified
 						if(error.status === 401 && !this.refreshedToken){
-							return this.refreshToken().pipe(
+							return this.refreshToken().pipe( // Tries to refresh token 
 								switchMap( () => {
 									request = this.appendAuthHeader(request);
 									return next.handle(request);
@@ -37,7 +51,7 @@ export class RequestInterceptorService implements HttpInterceptor {
 								})
 							);
 
-						}else if(error.status === 401){
+						}else if(error.status === 401){ // If 401
 							this.profileService.logout();
 						}
 
@@ -47,6 +61,9 @@ export class RequestInterceptorService implements HttpInterceptor {
 
 	}
 
+		/*
+		* Token refreshing method
+		*/
 		refreshToken(){
 
 			this.refreshedToken = true;
@@ -59,6 +76,10 @@ export class RequestInterceptorService implements HttpInterceptor {
 			);
 		}
 
+
+	/*
+	* This method append data to the request header (Append the access token)
+	*/
 	appendAuthHeader(request: HttpRequest<any>){
 		const token = this.profileService.getToken();
 

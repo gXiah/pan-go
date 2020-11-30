@@ -15,6 +15,10 @@ export class RegistrationViewComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
+
+	/**
+	* Creates a new "Random" profile
+	*/
 	newRandomProfile(){
 		this.profileService
 			.createRandomProfile()
@@ -23,6 +27,10 @@ export class RegistrationViewComponent implements OnInit {
 		});
 	}
 
+
+	/**
+	* Creates a profile
+	*/
 	// Note : For this version (Showcase version), food is considered a simple 'string' and Note
 	// ... and array
 	newProfile(

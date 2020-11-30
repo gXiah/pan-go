@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   		
   		// Checking session validity
   		// For this showcase version, we will trust the back-end API and not double check
+      // If session ID is set, then we consider it to be valid
   		if(typeof this.currentSession._id !== 'undefined'){
   			if(this.currentSession._id !== null){
   				this.sessionOk = true;

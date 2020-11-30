@@ -28,7 +28,7 @@ import { NavbarModule } from './modules/navbar/navbar.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NavbarModule
+    NavbarModule // Navbar
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true }

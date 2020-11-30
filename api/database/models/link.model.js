@@ -1,7 +1,7 @@
 /**
 * Model : A link between two users
 * @example :
-* [LEFT] User A <------(link)------> User B [RIGHT]
+* [ORIGIN] User A <------(link)------> User B [TARGET]
 * User B is in user A's contact list (But isn't necessarily in B's)
 */
 

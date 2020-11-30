@@ -5,6 +5,14 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
+/*===============
+*
+* Request handler
+*
+*================*/
+
+
 export class RequestHandlerService {
 
 	readonly ROOT;
@@ -17,13 +25,19 @@ export class RequestHandlerService {
       this.headers = new HttpHeaders();
   	}
 
+
+
   	get(uri: string){
   		return this.http.get(`${this.ROOT}/${uri}`);
   	}
 
+    
+
   	delete(uri: string){
   		return this.http.delete(`${this.ROOT}/${uri}`);
   	}
+
+
 
   	post(uri: string, payload: Object){
   		return this.http.post(`${this.ROOT}/${uri}`, payload);
@@ -31,6 +45,9 @@ export class RequestHandlerService {
       login_post(uri: string, payload: Object){
         return this.http.post(`${this.ROOT}/login`, payload, { observe: 'response' });
       }
+
+
+
 
   	patch(uri: string, payload: Object){
   		return this.http.patch(`${this.ROOT}/${uri}`, payload);
