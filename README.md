@@ -1,2 +1,5 @@
 # pan-go
-Contact managent 
+Contact managent system
+
+## A more presentable Readme will very soon be available, stay tuned !
+
